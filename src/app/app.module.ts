@@ -4,7 +4,6 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
 import { ProductsPage } from '../pages/products/products';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -14,6 +13,8 @@ import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 import { UserService } from '../providers/user-service';
 
 import { CartModalComponent } from '../components/cart-modal/cart-modal';
+import { WishlistModalComponent } from '../components/wishlist-modal/wishlist-modal';
+
 
 
 const cloudSettings: CloudSettings = {
@@ -27,9 +28,9 @@ const cloudSettings: CloudSettings = {
   declarations: [
     MyApp,
     HomePage,
-    ListPage,
     ProductsPage,
-    CartModalComponent
+    CartModalComponent,
+    WishlistModalComponent
   ],
   imports: [
     BrowserModule,
@@ -40,9 +41,9 @@ const cloudSettings: CloudSettings = {
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage,
     ProductsPage,
-    CartModalComponent
+    CartModalComponent,
+    WishlistModalComponent
   ],
   providers: [
     StatusBar,

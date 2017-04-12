@@ -5,25 +5,39 @@
      <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-  </ion-navbar>
-</ion-header>
-<ion-content class="order">
-  <ion-buttons end>
+     <ion-buttons end>
       <button clear (click)="presentCartModal()" ion-button icon-only>
         <ion-icon name="cart"></ion-icon>
       </button>
     </ion-buttons>
+      <ion-buttons end>
+      <button clear (click)="presentWishlistModal()" ion-button icon-only>
+        <ion-icon name="heart"></ion-icon>
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+<ion-content class="order">
+
+ 
+
+
   <ion-list>
     <ion-item ion-item *ngFor="let product of products">
-      <span item-left text-left>{{product.id}}</span>
+     <!-- <span item-left text-left>{{product.id}}</span> -->
       <h2>{{product.name}}</h2>
       <ion-avatar item-left>
       <img src="{{product.imgUrl}}">
     </ion-avatar>
       <p>{{product.desc}}</p>
-      <p>{{product.price | currency:'EUR'}}</p>
+      <!--<p class="prix">{{product.price |currency:'EUR'}} </p> -->
+      <p class="prix">{{product.price }} €/ Unité</p> 
       <button item-right (click)="addToCart(product)" ion-button icon-only default>
             <ion-icon name="cart"></ion-icon>
+      </button>
+      <button item-right (click)="addToWishlist(product)" ion-button icon-only default>
+            <ion-icon name="heart"></ion-icon>
       </button>
     </ion-item>
   </ion-list>

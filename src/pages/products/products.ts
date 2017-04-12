@@ -6,8 +6,10 @@ import { ModalController} from 'ionic-angular';
 
 import { Product }from '../../models/product.model';
 import { Cart }from '../../models/cart.model';
+import { Wishlist }from '../../models/wishlist.model';
 
 import { CartModalComponent }from '../../components/cart-modal/cart-modal';
+import { WishlistModalComponent }from '../../components/wishlist-modal/wishlist-modal';
 
 
 
@@ -20,31 +22,22 @@ export class ProductsPage {
 
     private cart: Cart;
     private products: Product[];
+   
+    private wishlist: Wishlist;
 
   constructor(/*public navCtrl: NavController*,*/ public modalCtrl: ModalController ) {
 
     this.cart = new Cart(10.99, 13);
+    
+    this.wishlist = new Wishlist(10.99, 13);
+
     this.products = [
-      new Product(1, 'BARBACOA', 'https://s1.lmcdn.fr/multimedia/ac1401007243/daa8569e5788/produits/table-de-jardin-naterial-porto-carree-miel.jpg?$p=tbzoom',
-        7.90, "Tomàquet, mozzarella, bacó, salsa barbacoa, pollastre o carn picada.", 1),
-      new Product(2, 'BOLOGNESA', '',
-        8.40, "Tomàquet, mozzarella, salsa bolognesa i parmesà.", 1),
-      new Product(3, 'CALZONE', '',
-        8.40, "Tomàquet, mozzarella, pernil dolç i xampinyons.", 1),
-      new Product(4, 'CARBONARA', '',
-        7.90, "Tomàquet, mozzarella, bacó, salsa carbonara i parmesà.", 1),
-      new Product(5, ' CINQUE FORMAGGI', '',
-        7.90, "Tomàquet, mozzarella, emmental, rocafort, provolone i parmesà.", 1),
-      new Product(6, 'LA VENDETTA', '',
-        8.90, "Tomàquet, mozzarella, pernil salat, rúcula i parmesà en làmines", 1),
-      new Product(7, 'MARGARITA', '',
-        6.90, "Tomàquet, mozzarella i orenga.", 1),
-      new Product(8, 'MEXICANA', '',
-        8.40, "Tomàquet, mozzarella, carn picada, tabasc i bitxos verds.", 1),
-      new Product(9, 'RÚSTICA', '',
-        8.60, "Tomàquet, mozzarella, bacó, tomàquet natural, ceba, carn picada o pollastre.", 1),
-      new Product(10, 'TROPICAL', '',
-        7.90, " Tomàquet, mozzarella, pernil dolç i pinya.", 1),
+      new Product(1,'Chaise', 'https://s1.lmcdn.fr/multimedia/ac1401007243/daa8569e5788/produits/table-de-jardin-naterial-porto-carree-miel.jpg?$p=tbzoom',
+        70.90, " C'est du bon matos", 1),
+      new Product(2, 'Bonbonri', 'https://s2.lmcdn.fr/multimedia/831500087159/9d335721ab52/produits/meuble-de-salle-de-bains-de-60-a-79-brun-marron-ashley.jpg?$p=tbzoom',
+        80.40, "Bon pour la chambre", 1),
+      new Product(3, 'jcpas', 'https://s1.lmcdn.fr/multimedia/e11400234328/50de57c7d973/produits/pied-de-meuble-cylindrique-fixe-acier-brosse-gris-10-cm.jpg?$p=tbzoom',
+        8.40, " pied de meuble", 1)
     ];
   }
 
@@ -54,6 +47,13 @@ export class ProductsPage {
     profileModal.present();
   }
 
+
+    presentWishlistModal() {
+    let profileModal = this.modalCtrl.create(WishlistModalComponent, { wishlist: this.wishlist });
+    profileModal.present();
+  }
+
+
   addToCart(product: Product): void {
     // Prvent modifiy original values
     var clone = new Product(product.getId(), product.getName(), product.getImg(),
@@ -61,6 +61,17 @@ export class ProductsPage {
 
     this.cart.addProduct(clone);
   }
+
+
+    addToWishlist(product: Product): void {
+    // Prvent modifiy original values
+    var clone = new Product(product.getId(), product.getName(), product.getImg(),
+      product.getPrice(), product.getDesc(), product.getQuantity());
+
+    this.wishlist.addProduct(clone);
+  }
+
+
 
   }
 

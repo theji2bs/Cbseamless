@@ -16,6 +16,7 @@ export class UserService {
 
   getInstagramUserInfo(response) {
     //GET USER PHOTOS
+    alert(response.access_token);
     return this.http.get('https://api.instagram.com/v1/users/self/media/recent?access_token=' + response.access_token + '&count=5')
     .map((res) => res.json());
   } 

@@ -12,11 +12,10 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <div class="alert alert-warning" role="alert" *ngIf="cart.getTotalItems() == 0">
-    Your wishlist is empty
-  </div>
+  <div class="alert alert-warning" role="alert" *ngIf="wishlist.getTotalItems() == 0">
+Aucun produit dans la wishlist  </div>
 
-  <div class="table-responsive col-lg-12" *ngIf="cart.getTotalItems() > 0">
+  <div class="table-responsive col-lg-12" *ngIf="wishlist.getTotalItems() > 0">
 
     <table class="table table-striped">
 
@@ -34,22 +33,22 @@
           <td></td>
           <td></td>
           <td></td>
-          <td>Tax ({{ cart.getTax() }}%):</td>
-          <td>{{ cart.calculeTax() | currency }}</td>
+          <td>Tax ({{ wishlist.getTax() }}%):</td>
+          <td>{{ wishlist.calculeTax() | currency }}</td>
         </tr>
         <tr>
           <td></td>
           <td></td>
           <td></td>
          <td>Shipping:</td>
-          <td>{{ cart.getShipping() | currency:'EUR' }}</td>
+          <td>{{ wishlist.getShipping() | currency:'EUR' }}</td>
         </tr>
         <tr>
           <td></td>
           <td></td>
           <td></td>
           <td>Total:</td>
-          <td>{{ cart.totalCost() | currency:'EUR' }}</td>
+          <td>{{ wishlist.totalCost() | currency:'EUR' }}</td>
         </tr>
       </tfoot>
       <tbody>
