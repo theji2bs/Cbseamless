@@ -1,15 +1,30 @@
+
 <ion-header>
   <ion-navbar>
-    <button ion-button menuToggle>
+    <ion-title>Produits</ion-title>
+     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Produits</ion-title>
   </ion-navbar>
 </ion-header>
-
-<ion-content padding>
-  <h3>Produits</h3>
-
-
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+<ion-content class="order">
+  <ion-buttons end>
+      <button clear (click)="presentCartModal()" ion-button icon-only>
+        <ion-icon name="cart"></ion-icon>
+      </button>
+    </ion-buttons>
+  <ion-list>
+    <ion-item ion-item *ngFor="let product of products">
+      <span item-left text-left>{{product.id}}</span>
+      <h2>{{product.name}}</h2>
+      <ion-avatar item-left>
+      <img src="{{product.imgUrl}}">
+    </ion-avatar>
+      <p>{{product.desc}}</p>
+      <p>{{product.price | currency:'EUR'}}</p>
+      <button item-right (click)="addToCart(product)" ion-button icon-only default>
+            <ion-icon name="cart"></ion-icon>
+      </button>
+    </ion-item>
+  </ion-list>
 </ion-content>

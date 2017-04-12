@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Cart
+    </ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <span ion-text color="primary" showWhen="ios">Cancel</span>
+        <ion-icon name="md-close" hideWhen="ios"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="alert alert-warning" role="alert" *ngIf="cart.getTotalItems() == 0">
+    Your cart is empty
+  </div>
+
+  <div class="table-responsive col-lg-12" *ngIf="cart.getTotalItems() > 0">
+
+    <table class="table table-striped">
+
+      <thead>
+        <tr>
+          <th></th>
+          <th></th>
+          <th>Quantity</th>
+          <th>Amount</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tfoot>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>Tax ({{ cart.getTax() }}%):</td>
+          <td>{{ cart.calculeTax() | currency }}</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>Shipping:</td>
+          <td>{{ cart.getShipping() | currency:'EUR' }}</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>Total:</td>
+          <td>{{ cart.totalCost() | currency:'EUR' }}</td>
+        </tr>
+      </tfoot>
+      <tbody>
+        <tr *ngFor="let product of products">
+          <td>
+            <button clear (click)="remove(product)" ion-button icon-only>
+              <ion-icon name="close"></ion-icon>
+            </button>
+          </td>
+
+          <td>{{ product.getName() }}</td>
+          <td>
+            <button clear (click)="less(product)" [color]="product.getQuantity()==1 ? 'gray' : 'primary'" ion-button icon-only>
+              <ion-icon name="remove"></ion-icon>
+            </button>&nbsp;&nbsp; {{ product.getQuantity() | number }}&nbsp;&nbsp;
+            <button clear (click)="add(product)" ion-button icon-only>
+              <ion-icon name="add"></ion-icon>
+            </button>
+          </td>
+          <td>{{ product.getPrice() | currency}}</td>
+          <td>{{ product.getTotal() | currency }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ion-content>

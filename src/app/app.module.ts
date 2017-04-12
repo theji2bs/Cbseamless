@@ -13,6 +13,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 import { UserService } from '../providers/user-service';
 
+import { CartModalComponent } from '../components/cart-modal/cart-modal';
+
+
 const cloudSettings: CloudSettings = {
   'core': {
     'app_id': 'c5ba6ea6'
@@ -25,7 +28,8 @@ const cloudSettings: CloudSettings = {
     MyApp,
     HomePage,
     ListPage,
-    ProductsPage
+    ProductsPage,
+    CartModalComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +41,8 @@ const cloudSettings: CloudSettings = {
     MyApp,
     HomePage,
     ListPage,
-    ProductsPage
+    ProductsPage,
+    CartModalComponent
   ],
   providers: [
     StatusBar,
